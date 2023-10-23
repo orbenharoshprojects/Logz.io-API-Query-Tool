@@ -1,13 +1,19 @@
 # Logz.io API Query Tool 🚀
+<div align="center">
 [![Made with Flask](https://img.shields.io/badge/Made%20with-Flask-1f425f.svg)](https://flask.palletsprojects.com/)
 [![Docker Compatible](https://img.shields.io/badge/Docker-Compatible-blue.svg)](https://www.docker.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+</div>
 
-Harness the Logz.io API with this community-built Flask interface. This tool is designed to simplify querying and retrieving data from Logz.io. 
+Embark on an effortless journey with our Flask interface, designed to simplify querying and retrieving data from Logz.io.
 
 > **🚫 Disclaimer**: This is a community project and is not officially supported or affiliated with Logz.io.
 
+<div align="center">
+  
 ![App Preview](images/appPreview.gif)
+
+</div>
 
 ## 📌 Features
 
@@ -15,6 +21,7 @@ Harness the Logz.io API with this community-built Flask interface. This tool is 
   
 - **Data Formats**: Save data in CSV or TXT, as per your preference.
 
+---
 
 ## 🔧 Expected Data Format & Limitations
 
@@ -27,6 +34,8 @@ Harness the Logz.io API with this community-built Flask interface. This tool is 
 - **Network Constraints**: The Docker container needs network access to Logz.io. Ensure there's no blocking firewall or proxy.
 
 - **Not Official**: Remember, this tool is a community project and isn't an official Logz.io product.
+
+---
 
 ## 🚀 Getting Started
 
@@ -41,24 +50,39 @@ Harness the Logz.io API with this community-built Flask interface. This tool is 
    ```
 
 3. Navigate to [http://localhost:8000](http://localhost:8000) in your browser.
+
+<div align="center">
+
 ![GetData Preview](images/success.gif)
 
-## 🧐 How to find the required data? 
+</div>
+
+---
+
+## 🧐  How to Find the Required Data?
 - **API Token**: Can be found in Logz.io under the "Settings" -> "Manage Tokens" page for the needed account. 
+
 - **Lucene Query**: A valid format witout the usage of wiilecards. 
 >The pattrens can be modified in the `form.html` and the `data_processor.py` files.
+
 - **Region - Endpoint**: The Can be found in Logz.io under the "Settings" page. 
 >Supported options are listed in the `data_processor.py` file.
+
 -**Time Frame And OpenSearch TZ**: The "start" and "end" time frame for the used query. Can be taken directly via Logz.io OpenSearch UI with the addition of the OpenSearch UI timezone.
+
+<div align="center">
+
 ![GetData Preview](images/getdata.gif)
+
+</div>
+
 >Supported options are listed in the `data_processor.py` file and your Logz.io OS timezone is by defualt your webbroswer timezone. Buut, that can be modified by Logz.io Supports team if it was request to be changed.
-- **Account Id's (optional)**: ID of the sub account to search. Can be found in Logz.io under the "Settings" page and used in a comma separated format such as: 
-```bash
-1234,4567
-```
+
+- **Account Id's (optional)**: ID of the sub account to search. Can be found in Logz.io under the "Settings" page and used in a comma separated format: `1234,4567`.
+
 - **File Format**: Currently supportes `.cvs` or `.txt` option. Defulat is `.txt` 
 
-
+---
 
 ## 🐞 Debugging & Troubleshooting
 
