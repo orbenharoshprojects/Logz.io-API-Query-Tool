@@ -2,7 +2,7 @@
 
 Effortlessly query the Logz.io API through an intuitive Flask-based web interface. Whether you're an end-user or a developer looking to integrate with Logz.io, this tool simplifies the process and provides powerful data interpretation capabilities and overcomes some of the knone Log.io Log API limitions.
 
-![App Preview](URL_TO_PREVIEW_IMAGE)
+![App Preview](images/appPreview.png)
 
 ## 🌟 Features:
 
