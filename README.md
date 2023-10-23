@@ -78,7 +78,7 @@ Embark on an effortless journey with our Flask interface, designed to simplify q
 
 >Supported options are listed in the `data_processor.py` file and your Logz.io OS timezone is by defualt your webbroswer timezone. Buut, that can be modified by Logz.io Supports team if it was request to be changed.
 
-- **Account Id's (optional)**: ID of the sub account to search. Can be found in Logz.io under the "Settings" page and used in a comma separated format
+- **Account Id's (optional)**: ID of the sub account to search. Can be found in Logz.io under the "Settings" page and used in a comma separated format.
 >Ex: 1234,4567
 
 - **File Format**: Currently supportes `.cvs` or `.txt` option. Defulat is `.txt` 
