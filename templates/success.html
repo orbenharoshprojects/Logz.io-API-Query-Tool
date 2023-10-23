@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>API Query Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" type="image/png" href="/static/sitelogo.png">
+
+    <style>
+
+body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(45deg, #2D3F5A, #4D6178);
+            color: #F8C15C;
+            position: relative;
+            overflow: hidden;
+
+        }
+
+    .back-to-app {
+        transition: all 0.7s ease-in-out;
+        margin-right: 8px;
+        display: block;
+        margin: 0 auto;
+        cursor: pointer;
+        background: #F8C15C;   /* changed to warm accent color */
+        color: #2D3F5A;       /* deep contrasting color */
+        border: 2px solid #E5A94A; /* subtle border for depth */
+        padding: 8px 20px;
+        border-radius: 25px;
+        width: 200px; /* Increased width to accommodate text and icon */
+        border: none;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center; /* To align the text and icon */
+        text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transform: translateY(-20px);
+        animation: slideFadeIn 1s forwards 3.4s, pulse 2s infinite 3.2s;
+    }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+
+
+    .back-to-app:hover {
+        color: #2D3F5A;
+        background-color: #E5A94A;
+        box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+        transform: scale(3.09) translateY(-3px); /* Slight upward movement */
+        text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .back-to-app i {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .back-to-app:hover i {
+        transform: rotate(5deg); /* slight rotation to the icon */
+    }
+
+
+
+
+
+        .container {
+            position: relative; /* Add this */
+            top: -50px;
+            max-width: 500px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 80px;
+            padding: 30px 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: stretch;
+            height: 100vh;
+            z-index: 1000;
+        }
+
+        h2 {
+            font-weight: 800;
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: slideFadeIn 1s forwards 0.5s;
+        }
+
+        @keyframes slideFadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        p {
+            font-weight: 400;
+            font-size: 16px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"]:focus::placeholder {
+            opacity: 0;
+        }
+
+
+
+        input[type="text"] {
+            width: 100%;
+            padding: 13px 4px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            color: #F8C15C;
+            transition: background 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #F8C15C;
+        }
+
+        input[type="text"]:hover {
+            transform: scale(1.03);
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+
+
+        .submit-btn:hover {
+            background-color: #E5A94A;
+            transform: scale(1.05);
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 50px;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .submit-btn {
+            animation: pulseGlow 1.5s infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 5px #F8C15C;
+            }
+            50% {
+                box-shadow: 0 0 15px #fad082, 0 0 25px #F8755C;
+            }
+            100% {
+                box-shadow: 0 0 5px #F8C15C;
+            }
+        }
+
+       p.file-info {
+            font-size: 20px;
+            text-align: center;
+            padding: 12px 25px;
+            border-radius: 15px;
+            margin-top: 25px;
+            font-weight: 600;
+            background-color: rgba(248, 193, 92, 0.1);
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            opacity: 0;
+            transform: translateY(-20px);
+            animation: slideFadeIn 1s forwards 0.5s;
+        }
+
+
+    #khaled-img {
+        width: 25px;   /* adjust as needed */
+        height: 25px;  /* adjust as needed */
+        vertical-align: middle;
+        margin-left: 5px;
+        transform: scale(1);
+        transition: transform 0.3s ease-in-out;
+    }
+
+.credit-section {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500; /* adjusted weight */
+    color: rgba(248, 193, 92, 0.7); /* slightly increased opacity for better visibility */
+    letter-spacing: 1px;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+       <h2><i class="fas fa-download"></i> File is Ready!</h2>
+        <p class="file-info">
+            <i class="fas fa-info-circle"></i>
+            Your file has been saved to your computer's "Downloads" folder.
+        </p>
+        <div class="form-group">
+            <button class="back-to-app" onclick="redirectToMain();">
+                <i class="fas fa-arrow-left"></i> Back to Main
+            </button>
+        </div>
+    </div>
+    <div class="credit-section">
+        Created by Or Ben Harosh
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script>
+
+    function redirectToMain() {
+    let baseURL = window.location.protocol + "//" + window.location.host + "/";
+    window.location.href = baseURL;
+}
+
+        let bubbles = [];
+
+      function setup() {
+        let cnv = createCanvas(windowWidth, windowHeight);
+        cnv.style('position', 'fixed');
+        cnv.style('z-index', '-1');  // Set the z-index to -1
+        cnv.style('top', '0');
+    }
+
+
+
+        function draw() {
+            background('#2D3F5A');
+            if (random(1) < 0.05) {
+                let r = random(10, 50);
+                let x = random(width);
+                let y = height + r;
+                let bubble = new Bubble(x, y, r);
+                bubbles.push(bubble);
+            }
+            for (let bubble of bubbles) {
+                bubble.move();
+                bubble.show();
+            }
+        }
+
+        class Bubble {
+            constructor(x, y, r) {
+                this.x = x;
+                this.y = y;
+                this.r = r;
+            }
+
+            move() {
+                this.y = this.y - 2;
+            }
+
+            show() {
+                let col = lerpColor(color('#F8C15C'), color('#2D3F5A'), this.y / height);
+                fill(col);
+                noStroke();
+                ellipse(this.x, this.y, this.r * 2);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

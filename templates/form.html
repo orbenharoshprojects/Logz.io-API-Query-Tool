@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>API Query Tool</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" type="image/png" href="static/SiteLogo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&display=swap" rel="stylesheet">
+
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(45deg, #2D3F5A, #4D6178);
+            color: #F8C15C;
+            position: relative;
+            overflow: hidden;
+        }
+        .form-group {
+            width: 100%;
+        }
+        .container {
+            position: relative;
+            top: -50px;
+            max-width: 500px;
+            margin: auto;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 80px;
+            padding: 30px 30px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: stretch;
+            height: 100vh;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 40px;
+            letter-spacing: 2px;
+            animation: fadeInDown 1s ease-out;
+        }
+
+        @keyframes fadeInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-35px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"]:focus::placeholder {
+            opacity: 0;
+        }
+
+
+        input[type="text"], button {
+            transition: all 0.3s ease-in-out;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 13px 4px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.5);
+            color: #F8C15C;
+            transition: background 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            border: 2px solid #F8C15C;
+        }
+
+        input[type="text"]:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+        opacity: 0;
+        animation: fadeIn 0.5s forwards;
+    animation-delay: 0.7s;
+            display: block;
+            margin: 0 auto;
+            cursor: pointer;
+            background: #F8755C;
+            color: #F8C15C;
+            transition: background 0.6s, transform 0.3s;
+            padding: 8px 20px;
+            border-radius: 25px;
+            width: 150px;
+            border: none;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+
+
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+
+   button:hover {
+    background: #F65C4A;
+    transform: scale(1.05);
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+        .tooltip {
+            width: 100%; /* Keep as it is */
+            position: relative;
+            display: block; /* Change from inline-block to block */
+        }
+
+        .tooltiptext {
+            visibility: hidden;
+            width: 100%;
+            background: linear-gradient(135deg, #fae0d7, #fadfac);
+            color: #3D506C;
+            text-align: left;
+            border-radius: 8px;
+            padding: 8px 12px 8px 36px;
+            position: absolute;
+            z-index: 1;
+            top: -5px;
+            left: 105%;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.3s, transform 0.3s;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .tooltiptext::before {
+            content: '\f0a1';
+            font-family: FontAwesome;
+            font-size: 16px;
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .image-transparent {
+            display: block;  /* Make the image a block-level element */
+            margin: 0 auto;  /* Center the image horizontally */
+            max-width: 35%;
+            height: auto;
+            opacity: 0.7;
+        }
+
+
+
+        ::placeholder {
+            color: #f5f2ed;
+            opacity: 0.6;
+            text-shadow: 1.5px 1.3px 1px rgba(0, 0, 0, 0.2);  /* Soft shadow */
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 10px;
+            }
+        }
+
+.form-group {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideIn 0.5s forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(61, 80, 108, 0.9); /* Background color with slight transparency */
+    z-index: 1000; /* Makes sure the loading screen appears on top of everything */
+    visibility: hidden;
+}
+
+.spinner {
+    border: 16px solid #3D506C;
+    border-radius: 50%;
+    border-top: 16px solid #F8C15C;
+    width: 100px;
+    height: 100px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    z-index: 2000;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
+    background-color: #3D506C;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.close-btn {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 24px;
+    color: #F8C15C;
+    cursor: pointer;
+}
+
+
+
+.modal-content p {
+    color: #E74C3C;  /* Dark red shade for error text */
+    font-weight: 600; /* Bolder text for error message */
+    font-size: 18px;  /* Increased font size for readability */
+    text-align: center; /* Center aligned text */
+}
+
+.close-btn:hover {
+    opacity: 0.7;
+}
+
+.close-btn:active {
+    transform: scale(0.95);
+}
+
+.error-icon {
+    color: #E74C3C;  /* Dark red shade for error icon */
+    font-size: 40px;  /* Large error icon for better visual clarity */
+    text-align: center;  /* Center align the icon */
+    display: block;  /* Display as block for proper alignment */
+    margin-bottom: 20px;  /* Margin for spacing */
+}
+
+@keyframes shake {
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
+    30%, 50%, 70% {
+        transform: translate3d(-3px, 0, 0);
+    }
+    40%, 60% {
+        transform: translate3d(3px, 0, 0);
+    }
+}
+
+.error-icon.shake {
+    animation: shake 0.1s cubic-bezier(.36,.07,.19,.97) both 3;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}
+
+    /* Default link style */
+    .tooltiptext a {
+        color: #3D506C; /* Change this to your desired default link color */
+        ext-decoration: none; /* Remove underline */
+        font-size: 16px; /* Set the default font size */
+        transition: transform 0.2s, box-shadow 0.2s, color 0.2s; /* Add transitions for transform, box-shadow, and color */
+        display: inline-block; /* Make the link a block element for transform */
+        padding: 4px; /* Add padding to create space for the hover effect */
+    }
+
+    /* Hover effect */
+    .tooltiptext a:hover {
+        text-decoration: underline; /* Add underline on hover */
+        font-size: 18px; /* Increase font size on hover */
+        color: #5fbdc2; /* Change link color on hover to a more visually appealing color */
+        transform: scale(1.05) rotate(-2deg); /* Scale up slightly and rotate slightly counterclockwise */
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow on hover */
+        animation: wiggle 0.1s ease-in-out; /* Apply the wiggle animation (no infinite loop) */
+
+    }
+
+    /* Define the wiggle animation */
+    @keyframes wiggle {
+        0% {
+            transform: rotate(-2deg); /* Start with a slight counterclockwise rotation */
+        }
+        50% {
+            transform: rotate(2deg); /* Wiggle clockwise */
+        }
+        100% {
+            transform: rotate(-2deg); /* End with a slight counterclockwise rotation */
+        }
+    }
+
+    /* Active/clicked link style */
+    .tooltiptext a:active {
+        color: red; /* Change this to your desired color for the clicked link */
+    }
+
+.credit-section {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500; /* adjusted weight */
+    color: rgba(248, 193, 92, 0.7); /* slightly increased opacity for better visibility */
+    letter-spacing: 1px;
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+    #fileFormat {
+        width: 100%;
+        padding: 10px 4px;
+        margin-bottom: 20px;
+        border: none;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.5);
+        color: #F8C15C;
+        transition: background 0.3s, transform 0.3s;
+    }
+
+    #fileFormat:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid #F8C15C;
+        transform: scale(1.05);
+    }
+
+    #fileFormat:hover {
+        transform: scale(1.03);
+    }
+
+    </style>
+</head>
+
+<body>
+<div class="loading-screen">
+    <div class="spinner"></div>
+</div>
+<div class="credit-section">
+    Created by Or Ben Harosh
+</div>
+    <div class="container">
+       <img src="{{ url_for('static', filename='SiteLogo.png') }}" alt="Description of Image" class="image-transparent">
+        <h2>Let's Get The Data Started!</h2>
+
+<!-- Error Display Section -->
+<div id="errorSection" style="display: none;">
+    <h2>Error Occurred</h2>
+    <i class="error-icon shake">!</i>
+    <p id="errorMessage">{{ error_message }}</p>
+    <a href="{{ url_for('index') }}" class="close-btn" id="closeError">Go Back</a>
+</div>
+
+<form action="/" method="post" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="apiToken">API Token:</label>
+                <div class="tooltip">
+                    <input type="text" id="apiToken" name="api_token" placeholder="a230563e-0g5t-41w1-4sfa-12fa3456401a">
+                    <span class="tooltiptext">
+                        Your unique API token for authentication, <a href="https://docs.logz.io/user-guide/tokens/api-tokens.html" target="_blank">Click here for more!</a>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="luceneQuery">Lucene Query:</label>
+                <div class="tooltip">
+                    <input type="text" id="luceneQuery" name="lucene_query" placeholder="type:apache AND NOT type:apache2">
+                    <span class="tooltiptext">
+                        Enter the Lucene query to filter results. <a href="https://docs.logz.io/user-guide/logs/best-practices.html" target="_blank">Click here for more!</a>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="regionEndpoint">Region - Endpoint:</label>
+                <div class="tooltip">
+                    <input type="text" id="regionEndpoint" name="region_endpoint" placeholder="US East">
+                    <span class="tooltiptext">
+                        Endpoint URL for the selected region. <a href="https://docs.logz.io/api/#section/Account-region-and-API-URL" target="_blank">Click here for more!</a>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="timeRangeNTZ">Time Frame And OpenSearch TZ:</label>
+                <div class="tooltip">
+                    <input type="text" id="timeRangeNTZ" name="timeRangeNTZ" placeholder="Oct 2, 2023 @ 00:00:00.000 - Oct 4, 2023 @ 15:19:36.354 - IDT">
+                    <span class="tooltiptext">
+                        Specify the time frame and timezone for the query.<a href="https://docs.logz.io/user-guide/logs/best-practices.html#select-the-time-frame-for-your-logs" target="_blank">Click here for more!</a>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="accountIds">Account Id's: (optional)</label>
+                <div class="tooltip">
+                    <input type="text" id="accountIds" name="account_Ids" placeholder="Enter accountIds (comma-separated if multiple)">
+                    <span class="tooltiptext">
+                        For multiple account search's (optional). <a href="https://docs.logz.io/api/#tag/Search-logs:~:text=and%20yesterday%2C%20UTC).-,accountIds,-integer" target="_blank">Click here for more!</a>
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fileFormat">File Format:</label>
+                <select class="form-control" id="fileFormat" name="file_format">
+                    <option value="txt" selected>Text (.txt)</option>
+                    <option value="csv">CSV (.csv)</option>
+                </select>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Get all input elements
+    const inputs = document.querySelectorAll('input[type="text"]');
+
+    // Loop through each input
+    inputs.forEach(input => {
+        // Listen for the 'blur' event (when input loses focus)
+        input.addEventListener('blur', function() {
+            if (this.value.trim() === '') {
+                this.classList.remove('has-content');
+            } else {
+                this.classList.add('has-content');
+            }
+        });
+    });
+
+    // Modal controls
+    const modal = document.getElementById('errorModal');
+    const closeBtn = document.querySelector('.close-btn');
+    closeBtn.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+});
+
+
+
+
+    let balls = [];
+
+   function setup() {
+    let canvas = createCanvas(windowWidth, windowHeight);
+    canvas.position(0, 0);
+    canvas.style('z-index', '-1');
+
+    // Delay the ball animation by 1 second (1000 milliseconds)
+    setTimeout(() => {
+        for (let i = 0; i < 50; i++) {
+            balls.push(new Ball());
+        }
+        // Make the canvas visible after the delay
+        canvas.style('visibility', 'visible');
+    }, 1000);
+}
+
+    function windowResized() {
+        resizeCanvas(windowWidth, windowHeight);
+    }
+
+    function draw() {
+        background('#3D506C');
+        for (let ball of balls) {
+            ball.update();
+            ball.show();
+        }
+    }
+
+   class Ball {
+    constructor() {
+        this.pos = createVector(random(width), random(height));
+        this.vel = createVector(random(-2, 2), random(-2, 2));
+        this.r = random(5, 15);
+        this.lerpVal = random(1); // Random initial interpolation value between 0 and 1
+        this.dir = random(0.005, 0.015) * (random(1) > 0.5 ? 1 : -1); // Random direction and speed
+    }
+
+    update() {
+        this.pos.add(this.vel);
+        if (this.pos.x > width || this.pos.x < 0) {
+            this.vel.x *= -1;
+        }
+        if (this.pos.y > height || this.pos.y < 0) {
+            this.vel.y *= -1;
+        }
+
+        // Update the interpolation value
+        this.lerpVal += this.dir;
+        if (this.lerpVal >= 1 || this.lerpVal <= 0) {
+            this.dir *= -1; // Reverse the direction
+        }
+    }
+
+    show() {
+        noStroke();
+        let startColor = color('#3D506C');
+        let endColor = color('#F8C15C');
+        let currentColor = lerpColor(startColor, endColor, this.lerpVal);
+        fill(currentColor);
+        ellipse(this.pos.x, this.pos.y, this.r * 2);
+    }
+}
+
+
+function validateForm() {
+    const apiToken = document.getElementById('apiToken').value;
+    const luceneQuery = document.getElementById('luceneQuery').value;
+    const timeRangeNTZ = document.getElementById('timeRangeNTZ').value;
+    const accountIds = document.getElementById('accountIds').value;
+    const regionEndpoint = document.getElementById('regionEndpoint').value;
+    const errorMsgElement = document.getElementById('errorMsg');
+    const errorModal = document.getElementById('errorModal');
+
+    // Define validation rules (you can customize these)
+    const apiTokenPattern = /[a-zA-Z0-9-]+/;
+    const timeRangePattern = /^[\w\s,@:.-]+$/;
+    const accountIdsPattern = /^(\d+)(,\d+)*$/; // Accepts only comma-separated numbers.
+    const regionEndpointPattern = /^[a-zA-Z\s-]+$/;
+
+    let errorMessage = ""; // Store the error message here
+
+    // Validate API Token
+    if (!apiToken.match(apiTokenPattern)) {
+        errorMessage += 'Invalid API Token format.<br>';
+    }
+
+    // Validate Lucene Query
+    if (!isValidLuceneQuery(luceneQuery)) {
+        errorMessage += 'Invalid Lucene Query format.<br>';
+    }
+
+    // Validate Time Range And OpenSearch TZ
+    if (!timeRangeNTZ.match(timeRangePattern)) {
+        errorMessage += 'Invalid Time Range format.<br>';
+    }
+
+    // Validate accountIds
+    if (accountIds && !accountIds.match(accountIdsPattern)) {
+        errorMessage += 'Invalid Account Ids format. Enter only comma-separated numbers.<br>';
+    }
+
+    // Validate Region - Endpoint
+    if (!regionEndpoint.match(regionEndpointPattern)) {
+        errorMessage += 'Invalid Region - Endpoint format.<br>';
+    }
+
+        if (errorMessage) {
+        errorMsgElement.innerHTML = errorMessage;
+        errorModal.style.display = "block";
+        return false; // Keep the form from submitting if validation failed
+    } else {
+        document.querySelector('.loading-screen').style.visibility = 'visible';
+
+        // AJAX Submission
+        fetch('/', {
+            method: 'POST',
+            body: new FormData(document.querySelector('form'))
+        })
+
+
+        .then(response => response.json())
+        .then(data => {
+            document.querySelector('.loading-screen').style.visibility = 'hidden';
+            if (data.status === "success") {
+                if (data.redirect_url) {
+                    window.location.href = data.redirect_url;
+                } else {
+                    alert(data.message);
+                }
+            } else {
+                // Handle errors
+                errorMsgElement.innerHTML = data.message;
+                errorModal.style.display = "block";
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.querySelector('.loading-screen').style.visibility = 'hidden';
+            alert('An error occurred.');
+        });
+
+        return false; // Prevent the form from submitting the traditional way
+    }
+}
+
+function isValidLuceneQuery(query) {
+    // Validate Lucene Query based on the provided syntax
+    const luceneQueryPattern = /(?:(?:[^\s:]+:(?:"[^"]*"|[^\s]+))|(?:"[^"]*"))(?:\s+(?:AND|OR|NOT)?\s+(?:(?:[^\s:]+:(?:"[^"]*"|[^\s]+))|(?:"[^"]*")))*$/;
+    return luceneQueryPattern.test(query);
+}
+
+ document.addEventListener('DOMContentLoaded', function() {
+    // Reference to the modal and close button
+    const modal = document.getElementById('errorModal');
+    const closeBtns = document.querySelectorAll('.close-btn');
+
+    // Close the modal when the close button is clicked
+    closeBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+    });
+
+    // Close the modal when clicking outside the modal content
+    modal.addEventListener('click', function(event) {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+        }
+    });
+});
+
+</script>
+
+<div id="errorModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <i class="fas fa-exclamation-triangle error-icon shake"></i>
+        <p id="errorMsg"></p>
+    </div>
+</div>
+</div>
+</body>
+</html>
+
