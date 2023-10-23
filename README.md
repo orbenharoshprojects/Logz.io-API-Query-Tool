@@ -1,9 +1,8 @@
 # Logz.io API Query Tool 🚀
-<div align="center">
 [![Made with Flask](https://img.shields.io/badge/Made%20with-Flask-1f425f.svg)](https://flask.palletsprojects.com/)
 [![Docker Compatible](https://img.shields.io/badge/Docker-Compatible-blue.svg)](https://www.docker.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-</div>
+
 
 Embark on an effortless journey with our Flask interface, designed to simplify querying and retrieving data from Logz.io.
 
@@ -79,7 +78,6 @@ Embark on an effortless journey with our Flask interface, designed to simplify q
 >Supported options are listed in the `data_processor.py` file and your Logz.io OS timezone is by defualt your webbroswer timezone. Buut, that can be modified by Logz.io Supports team if it was request to be changed.
 
 - **Account Id's (optional)**: ID of the sub account to search. Can be found in Logz.io under the "Settings" page and used in a comma separated format.
->Ex: 1234,4567
 
 - **File Format**: Currently supportes `.cvs` or `.txt` option. Defulat is `.txt` 
 
