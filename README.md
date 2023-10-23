@@ -1,14 +1,28 @@
-# Logz.io API Query Tool 🚀
+# Logz.io Flask API Interface 🌐
 
-Effortlessly query the Logz.io API through an intuitive Flask-based web interface. Whether you're an end-user or a developer looking to integrate with Logz.io, this tool simplifies the process and provides powerful data interpretation capabilities and overcomes some of the knone Log.io Log API limitions.
+Harness the Logz.io API with this community-built Flask interface. This tool is designed to simplify querying and visualizing data from Logz.io. 
 
-![App Preview](images/appPreview.png)
+> **Disclaimer**: This is a community project and is not officially supported or affiliated with Logz.io.
+
+![App Preview](images/appPreview.gif)
 
 ## 🌟 Features:
 
 - 🖥️ **Web Interface**: A user-friendly interface for querying Logz.io Log data via API.
 - 📊 **Data Interpretation**: The script `data_processor.py` interprets the insterted data to Logz.io API in a valid format.
 - 📦 **Docker Integration**: Easily deployable using 2 Docker commands.
+- 💁‍♂️ **Format Selection**: Select to save your data in a CSV or a TXT format.
+- 🏅 **Log Result Amount Limition**: None. You can use it to retrive any amount of data with any (based on the used log account retention) timeframe. 
+> ⏲️ **Note**, This app has taken in considuearion the Logz.io API limitions (regarding Log data) and for a big amount. or wide time range of data, it could take a few mintues or more. 
+
+
+## 🔧 Expected Data Format & Limitations
+
+- **Requered Data**: The interface expects an API token, Lucine querie, Region, Time frame and file format in a spisific fomat that needs to be summnited. That pattren can be modifyied in the `form.html` file and in the `data_processor.py` if needed.
+- **Data Limitations**: The `data_processor.py` script has certain hardcoded structures and limitations to avoid abusing or reaching the Logz.io API and to ensure that all data hs been retrived. 
+- **Rate Limits**: The tool does not bypass any API rate limits set by Logz.io.
+- **Not Official**: Remember, this tool is a community project and isn't an official Logz.io product. Meaning, this is not a suppored feature by the Logz.io Support's Team or any other Logz.io supported team.  
+
 
 ## ⚡ Quick Start:
 
@@ -24,27 +38,6 @@ Effortlessly query the Logz.io API through an intuitive Flask-based web interfac
 
 3. 🌐 Visit the app: [http://localhost:8000](http://localhost:8000)
 
-## 🛠 How It Works:
-
-- **Flask Interface**: The tool leverages Flask to provide a web interface. Users input their queries and the tool communicates with the Logz.io API.
-  
-- **Data Processing**: Upon fetching data from Logz.io, the `data_processor.py` script is used to interpret and, if necessary, transform the data before presenting it to the user.
-
-## 🔍 Use Case Scenarios:
-
-1. **Log Analysis**: Users can query specific logs from Logz.io and utilize the built-in data processing capabilities to understand trends, anomalies, or specific incidents.
-
-2. **Integration with Other Systems**: Developers can use this tool as a mediator to fetch data from Logz.io and then integrate it into other systems or dashboards.
-
-3. **Quick Debugging**: Without setting up a local development environment, users can quickly debug or check logs from Logz.io.
-
-## 📚 Limitations & Considerations:
-
-- **Rate Limiting**: The tool is subject to any rate limits imposed by the Logz.io API. Ensure not to exceed the permitted number of queries in a short time.
-
-- **Data Volume**: The tool is designed for querying and not for massive data exports. For large data, consider using Logz.io's export functionality.
-
-- **Security**: Always ensure that API keys and other sensitive information are securely handled. Avoid exposing such details in client-facing interfaces.
 
 ## 💡 Debugging:
 
@@ -52,11 +45,9 @@ Effortlessly query the Logz.io API through an intuitive Flask-based web interfac
   ```bash
   docker logs [container_id]
   ```
+- **API Responses**: The `data_processor.py` script processes API responses and also printed in the used terminal. 
 
-- **API Responses**: The `data_processor.py` script processes API responses. If there are unexpected results, consider examining the raw API responses for clarity.
-
-- **Network Issues**: Ensure that the Docker container has appropriate network permissions and that there aren't any firewalls or network configurations blocking the connection to Logz.io.
 
 ## 🤝 Connect & Contribute:
 
-Feedback and contributions are the backbone of open-source. For issues, suggestions, or contributions, delve into our [GitHub repository](URL_TO_GITHUB_REPO). Let's grow together!
+Feedback and contributions are the backbone of open-source. Please reach out for issues, suggestions, or contributions, Let's grow together!
