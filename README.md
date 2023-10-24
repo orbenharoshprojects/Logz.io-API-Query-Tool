@@ -45,7 +45,7 @@ Embark on an effortless journey with our Flask interface, designed to simplify q
 
 2. Launch the Docker container:
    ```bash
-   docker run -p 8000:8000 orbenharoshprojects/logzio-api-app
+   docker run -it -v "$(pwd)/Downloads:/app/Downloads" -p 8000:8000  orbenharoshprojects/logzio-api-app:latest
    ```
 
 3. Navigate to [http://localhost:8000](http://localhost:8000) in your browser.
