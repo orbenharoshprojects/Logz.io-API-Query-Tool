@@ -67,7 +67,7 @@ Embark on an effortless journey with our Flask interface, designed to simplify q
 - **Region - Endpoint**: The Can be found in Logz.io under the "Settings" page. 
 >Supported options are listed in the `data_processor.py` file.
 
--**Time Frame And OpenSearch TZ**: The "start" and "end" time frame for the used query. Can be taken directly via Logz.io OpenSearch UI with the addition of the OpenSearch UI timezone.
+- **Time Frame And OpenSearch TZ**: The "start" and "end" time frame for the used query. Can be taken directly via Logz.io OpenSearch UI with the addition of the OpenSearch UI timezone.
 
 <div align="center">
 
