@@ -1,0 +1,5 @@
+flask
+flask-socketio
+flask-cors
+requests
+gunicorn

@@ -6,6 +6,7 @@ import time
 from datetime import datetime as dt
 from queue import Queue
 import os
+from flask_socketio import emit
 
 # Constants
 API_ENDPOINTS = {
@@ -38,6 +39,8 @@ API_TIMEOUT_SECONDS = 10
 MAX_CONCURRENT_REQUESTS = 80
 current_date = datetime.datetime.utcnow()  # the user current time in UTC to calculate the DayOffset
 
+# First ser for completed threads for Progress bar cal:
+completed_threads_counter = 0
 
 def threaded_fetch_data(api_token, region, lucene_query, start_time, end_time, day_offset, result_queue, accountids_input):
     """Threaded function to fetch data and put results in a queue."""
@@ -111,6 +114,8 @@ def fetch_data_concurrent(api_token, region, lucene_query, start_time, end_time,
     current_interval = datetime.timedelta(minutes=2)  # Start with 2 minutes
     threads = []
     result_queue = Queue()
+    total_intervals = (end_time - start_time).total_seconds() / current_interval.total_seconds()
+    completed_intervals = 0
 
     while start_time < end_time:
         interval_end = start_time + current_interval
@@ -126,6 +131,16 @@ def fetch_data_concurrent(api_token, region, lucene_query, start_time, end_time,
         # Ensure we don't exceed the maximum number of concurrent requests
         while threading.active_count() > MAX_CONCURRENT_REQUESTS:
             time.sleep(0.1)  # Small delay to avoid busy-waiting
+
+        completed_intervals += len([t for t in threads if not t.is_alive()])
+
+        # Clear threads that have completed
+        threads = [t for t in threads if t.is_alive()]
+        progress_percentage = round(min(100, (completed_intervals / total_intervals) * 100))
+
+        # Emit the progress update to Flask.app
+        emit('progress_update', {'progress': progress_percentage}, namespace='/progress', broadcast=True)
+
 
         if interval_end == end_time:
             break
@@ -191,7 +206,7 @@ def process_data(api_token, region, lucene_query, date_time_input, accountids_in
         # Create the filename with its full path
         filename = filespath + f"Logz.io API Query Tool-{dt.now().strftime('%Y-%m-%d_%H-%M')}-Results-{len(unique_results)}{file_ext}"
 
-        with open(filename, 'w+') as file:
+        with open(filename, 'w') as file:
             if file_format == "csv":
                 import csv
                 writer = csv.DictWriter(file, fieldnames=unique_results[0].keys())
@@ -200,7 +215,7 @@ def process_data(api_token, region, lucene_query, date_time_input, accountids_in
                     writer.writerow(result)
             else:
                 for result in unique_results:
-                    file.write(json.dumps(result) + "\\n")
+                    file.write(json.dumps(result) + "\n")
 
         return filename  # Return the full path where the results are saved
 

@@ -395,10 +395,57 @@
         transform: scale(1.03);
     }
 
+progress[value] {
+    border: none; /* Remove the default border */
+    background: rgba(255, 255, 255, 0.2); /* Set a transparent background */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    border-radius: 10px; /* Rounded corners for a sleek look */
+    transform: perspective(500px) rotateX(25deg); /* Slight 3D tilt */
+    transform-origin: bottom; /* 3D tilt from bottom */
+}
+
+progress[value]::-webkit-progress-bar {
+    background: rgba(255, 255, 255, 0.2); /* Set a transparent background */
+    border-radius: 10px; /* Rounded corners for Webkit browsers */
+}
+
+progress[value]::-webkit-progress-value {
+    background: #4A90E2; /* Retain blue shade */
+    border-radius: 10px; /* Rounded corners for Webkit browsers */
+    /* Add a moving gradient glow with #F8C15C color */
+    background-image:
+        -webkit-linear-gradient(-45deg, transparent, #F8C15C, transparent);
+    background-size: 150% 100%; /* Stretch the gradient */
+    animation: progress-glow 2s linear infinite;
+}
+
+progress[value]::-moz-progress-bar {
+    background: #4A90E2; /* Retain blue shade for Mozilla */
+    border-radius: 10px; /* Rounded corners for Mozilla browsers */
+    /* Add a moving gradient glow with #F8C15C color for Mozilla */
+    background-image:
+        -moz-linear-gradient(-45deg, transparent, #F8C15C, transparent);
+    background-size: 150% 100%; /* Stretch the gradient for Mozilla */
+    animation: progress-glow 2s linear infinite;
+}
+
+@keyframes progress-glow {
+    0% {
+        background-position: -150% 0;
+    }
+    100% {
+        background-position: 250% 0;
+    }
+}
+
+
+
+
     </style>
 </head>
 
 <body>
+<progress id="progressBar" value="0" max="100" style="display: none; width:100%; height:5px; position:fixed; top:0; left:0; z-index:9999;"></progress>
 <div class="loading-screen">
     <div class="spinner"></div>
 </div>
@@ -430,7 +477,7 @@
             <div class="form-group">
                 <label for="luceneQuery">Lucene Query:</label>
                 <div class="tooltip">
-                    <input type="text" id="luceneQuery" name="lucene_query" placeholder="type:apache AND NOT type:apache2">
+                    <input type="text" id="luceneQuery" name="lucene_query" placeholder="type:apache AND NOT &quot;apache2&quot;">
                     <span class="tooltiptext">
                         Enter the Lucene query to filter results. <a href="https://docs.logz.io/user-guide/logs/best-practices.html" target="_blank">Click here for more!</a>
                     </span>
@@ -682,6 +729,8 @@ function isValidLuceneQuery(query) {
     });
 });
 
+
+
 </script>
 
 <div id="errorModal" class="modal">
@@ -692,6 +741,34 @@ function isValidLuceneQuery(query) {
     </div>
 </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+<script type="text/javascript">
+
+document.addEventListener('DOMContentLoaded', function() {
+    var socket = io.connect('http://' + document.domain + ':' + location.port + '/progress');
+
+    socket.on('connect', function() {
+        console.log("Successfully connected to Socket.IO");
+    });
+
+    socket.on('error', function(error) {
+        console.log("Socket.IO Error: ", error);
+    });
+
+    socket.on('progress_update', function(data) {
+        console.log("Received progress update:", data.progress);
+        var progressBar = document.getElementById('progressBar');
+        if (progressBar) {
+            progressBar.style.display = 'block';
+            progressBar.value = data.progress;
+            console.log("Progress bar updated:", data.progress);
+        } else {
+            console.warn("Progress bar element not found.");
+        }
+    });
+});
+</script>
+
 </body>
 </html>
 

@@ -1,11 +1,11 @@
-# Use the official Python image from the DockerHub
-FROM python:3.9-slim
+# Use a more specific base image to reduce image size
+FROM python:3.9-slim-buster
 
 # Set the working directory in the container
 WORKDIR /app
 
+# Create necessary directories
 RUN mkdir /app/Downloads
-#RUN mkdir /supportCLIMenu/supportCLIFiles
 
 # Copy the application files to the container
 COPY flask_app.py data_processor.py /app/
@@ -16,11 +16,14 @@ COPY templates/ /app/templates/
 # Copy the static files to the container
 COPY static/ /app/static/
 
+# Copy the updated requirements.txt
+COPY requirements.txt .
+
 # Install the required dependencies
-RUN pip install flask requests
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Specify the port number the container should expose
 EXPOSE 8000
 
-# Run flask_app.py when the container launches
-CMD ["python", "flask_app.py"]
+# Use gunicorn as the entrypoint to serve your application
+ENTRYPOINT ["gunicorn", "-b", "0.0.0.0:8000", "flask_app:app", "--threads", "4"]

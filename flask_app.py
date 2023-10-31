@@ -1,11 +1,14 @@
-from flask import Flask, render_template, request, send_from_directory, redirect, url_for, jsonify
+from flask import Flask, render_template, request, jsonify, url_for, Response
+from flask_socketio import SocketIO, emit
 import data_processor
 import shutil
 import os
 from flask import jsonify
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)  # Allow all origins for simplicity; adjust as needed in a production setting
+socketio = SocketIO(app, cors_allowed_origins="*")  # Adjust this for production
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -31,28 +34,11 @@ def index():
 
     return render_template("form.html")
 
+# Progress bar updates
+@socketio.on('connect', namespace='/progress')
 
 @app.route("/success/<filename>")
 def success(filename):
-    return render_template("success.html", filename=filename)
-
-
-@app.route("/success/<filename>")
-def download_file(filename):
-    print("Inside download_file function")  # <-- Here
-    source_path = f"outputs/{filename}"
-    destination_folder = f"{os.path.expanduser('~')}/Downloads/"
-    print(f"Source: {source_path}")  # <-- And here
-    print(f"Destination Folder: {destination_folder}")  # <-- And here
-
-    try:
-        destination_path = os.path.join(destination_folder, filename)
-        print(f"Destination Path: {destination_path}")  # <-- And here
-        shutil.move(source_path, destination_path)
-    except Exception as e:
-        print(f"Exception: {e}")  # <-- And here
-        return f"Error: {e}"
-
     return render_template("success.html", filename=filename)
 
 
@@ -62,4 +48,5 @@ def error_page():
 
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0', port=8000)
+    socketio.run(app, debug=True, host='0.0.0.0', port=8000)
+
