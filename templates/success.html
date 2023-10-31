@@ -4,13 +4,12 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>API Query Tool</title>
+    <title>API Query Tool - File is Ready!</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="icon" type="image/png" href="/static/sitelogo.png">
+    <link rel="icon" type="image/png" href="/static/SiteLogo.png">
 
     <style>
-
 body {
             font-family: 'Inter', sans-serif;
             background: linear-gradient(45deg, #2D3F5A, #4D6178);
@@ -264,21 +263,19 @@ body {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
     <script>
 
-    function redirectToMain() {
-    let baseURL = window.location.protocol + "//" + window.location.host + "/";
-    window.location.href = baseURL;
-}
+  function redirectToMain() {
+            let baseURL = window.location.protocol + "//" + window.location.host + "/";
+            window.location.href = baseURL;
+        }
 
         let bubbles = [];
 
-      function setup() {
-        let cnv = createCanvas(windowWidth, windowHeight);
-        cnv.style('position', 'fixed');
-        cnv.style('z-index', '-1');  // Set the z-index to -1
-        cnv.style('top', '0');
-    }
-
-
+        function setup() {
+            let cnv = createCanvas(windowWidth, windowHeight);
+            cnv.style('position', 'fixed');
+            cnv.style('z-index', '-1');
+            cnv.style('top', '0');
+        }
 
         function draw() {
             background('#2D3F5A');
@@ -313,7 +310,6 @@ body {
                 ellipse(this.x, this.y, this.r * 2);
             }
         }
-
     </script>
 </body>
 
