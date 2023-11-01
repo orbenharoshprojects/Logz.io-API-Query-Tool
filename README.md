@@ -84,7 +84,11 @@ The details below guide you on sourcing the needed information:
 
 ## 🐞 Debugging & Troubleshooting
 
-[Existing debugging and troubleshooting details.]
+- **Data Mismatches**: If the fetched data looks off, inspect the raw API responses. The `data_processor.py` script interprets the data in specific ways and can be modified.
+
+- **UI Issues**: If the interface doesn't render correctly, ensure that all static assets are being served properly. The confidured pattrens can be modified in the `form.html` and the `data_processor.py` files. 
+
+- **Connectivity Issues**: If you can't fetch data, ensure that the Docker container can reach Logz.io. Check network permissions and configurations.
 
 ---
 
@@ -93,5 +97,3 @@ The details below guide you on sourcing the needed information:
 Found something amiss? Have an enhancement in mind? We're all ears. Be a part of our growing community and help us make this tool even better!
 
 ---
-
-These refinements aim to streamline content, improve clarity, and enhance the overall readability of the document. Adjust as needed based on your preferences!
