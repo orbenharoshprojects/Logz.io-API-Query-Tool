@@ -39,7 +39,7 @@ API_TIMEOUT_SECONDS = 10
 MAX_CONCURRENT_REQUESTS = 80
 current_date = datetime.datetime.utcnow()  # the user current time in UTC to calculate the DayOffset
 
-# First ser for completed threads for Progress bar cal:
+# First seT for completed threads for Progress bar cal:
 completed_threads_counter = 0
 
 def threaded_fetch_data(api_token, region, lucene_query, start_time, end_time, day_offset, result_queue, accountids_input):
@@ -196,15 +196,12 @@ def process_data(api_token, region, lucene_query, date_time_input, accountids_in
     # Only save to a file if there are results
     if len(unique_results) > 0:
 
-        baseDir = [os.path.dirname(os.path.abspath(__file__))][-1]
-        filespath = f"{baseDir}/Downloads/"
         # Get the path to the user's Downloads folder
-        # downloads_folder = os.path.expanduser('~') + "/Downloads/"
-
+        downloads_folder = os.path.expanduser('~') + "/Downloads/"
         file_ext = ".csv" if file_format == "csv" else ".txt"
 
         # Create the filename with its full path
-        filename = filespath + f"Logz.io API Query Tool-{dt.now().strftime('%Y-%m-%d_%H-%M')}-Results-{len(unique_results)}{file_ext}"
+        filename = downloads_folder + f"Logz.io API Query Tool-{dt.now().strftime('%Y-%m-%d_%H-%M')}-Results-{len(unique_results)}{file_ext}"
 
         with open(filename, 'w') as file:
             if file_format == "csv":
