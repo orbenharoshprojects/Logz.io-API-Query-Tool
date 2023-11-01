@@ -2,7 +2,7 @@ Your README is already well-structured. I've made a few refinements to improve r
 
 ---
 
-# Logz.io API Query Tool 🚀
+# Logz.io API Query Tool 🧰
 [![Made with Flask](https://img.shields.io/badge/Made%20with-Flask-1f425f.svg)](https://flask.palletsprojects.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -46,7 +46,7 @@ To set everything up, simply run the command below:
 git clone https://github.com/orbenharoshprojects/Logz.io-API-Query-Tool "Logz.io-API-Query-Tool App" && cd "Logz.io-API-Query-Tool App" && chmod +x setup_and_run.sh && ./setup_and_run.sh
 ```
 
-### 🖥️ Windows:
+### Windows:
 
 Just execute the command below:
 
