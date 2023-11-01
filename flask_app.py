@@ -1,14 +1,12 @@
 from flask import Flask, render_template, request, jsonify, url_for, Response
 from flask_socketio import SocketIO, emit
 import data_processor
-import shutil
-import os
 from flask import jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Allow all origins for simplicity; adjust as needed in a production setting
-socketio = SocketIO(app, cors_allowed_origins="*")  # Adjust this for production
+CORS(app)
+socketio = SocketIO(app, cors_allowed_origins="*")
 
 @app.route("/", methods=["GET", "POST"])
 def index():
