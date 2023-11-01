@@ -1,7 +1,3 @@
-Your README is already well-structured. I've made a few refinements to improve readability and clarity. Here's the improved version:
-
----
-
 # Logz.io API Query Tool App
 [![Made with Flask](https://img.shields.io/badge/Made%20with-Flask-1f425f.svg)](https://flask.palletsprojects.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
@@ -96,4 +92,4 @@ The details below guide you on sourcing the needed information:
 
 Found something amiss? Have an enhancement in mind? We're all ears. Be a part of our growing community and help us make this tool even better!
 
----
+
