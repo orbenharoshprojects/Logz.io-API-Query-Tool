@@ -2,7 +2,7 @@ Your README is already well-structured. I've made a few refinements to improve r
 
 ---
 
-# Logz.io API Query Tool 🧰
+# Logz.io API Query Tool App
 [![Made with Flask](https://img.shields.io/badge/Made%20with-Flask-1f425f.svg)](https://flask.palletsprojects.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
