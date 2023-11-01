@@ -66,7 +66,13 @@ If you need to tweak data verification or patterns, adjustments can be made in `
 
 The details below guide you on sourcing the needed information:
 
-[Details on sourcing API Token, Lucene Query, etc.]
+- **API Token**: Can be found in Logz.io under the "Settings" -> "Manage Tokens" page for the needed account. 
+
+- **Lucene Query**: A valid format witout the usage of wiilecards. 
+
+- **Region - Endpoint**: The Can be found in Logz.io under the "Settings" page. 
+
+- **Time Frame And OpenSearch TZ**: The "start" and "end" time frame for the used query. Can be taken directly via Logz.io OpenSearch UI with the addition of the OpenSearch UI timezone.
 
 <div align="center">
 
