@@ -705,7 +705,7 @@ function validateForm() {
 
 function isValidLuceneQuery(query) {
     // Validate Lucene Query based on the provided syntax
-    const luceneQueryPattern = /(?:(?:[^\s:]+:(?:"[^"]*"|[^\s]+))|(?:"[^"]*"))(?:\s+(?:AND|OR|NOT)?\s+(?:(?:[^\s:]+:(?:"[^"]*"|[^\s]+))|(?:"[^"]*")))*$/;
+    const luceneQueryPattern = /.*$/;
     return luceneQueryPattern.test(query);
 }
 

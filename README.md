@@ -1,8 +1,4 @@
-Your README is already well-structured. I've made a few refinements to improve readability and clarity. Here's the improved version:
-
----
-
-# Logz.io API Query Tool 🚀
+# Logz.io API Query Tool App
 [![Made with Flask](https://img.shields.io/badge/Made%20with-Flask-1f425f.svg)](https://flask.palletsprojects.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -46,7 +42,7 @@ To set everything up, simply run the command below:
 git clone https://github.com/orbenharoshprojects/Logz.io-API-Query-Tool "Logz.io-API-Query-Tool App" && cd "Logz.io-API-Query-Tool App" && chmod +x setup_and_run.sh && ./setup_and_run.sh
 ```
 
-### 🖥️ Windows:
+### Windows:
 
 Just execute the command below:
 
@@ -70,7 +66,14 @@ If you need to tweak data verification or patterns, adjustments can be made in `
 
 The details below guide you on sourcing the needed information:
 
-[Details on sourcing API Token, Lucene Query, etc.]
+- **API Token**: Can be found in Logz.io under the "Settings" -> "Manage Tokens" page for the needed account. 
+
+- **Lucene Query**: A valid format witout the usage of wiilecards. 
+
+- **Region - Endpoint**: The Can be found in Logz.io under the "Settings" page. 
+
+- **Time Frame And OpenSearch TZ**: The "start" and "end" time frame for the used query. Can be taken directly via Logz.io OpenSearch UI with the addition of the OpenSearch UI timezone.
+> Ex. with IDT: Oct 23, 2023 @ 13:05:08.275 - Oct 24, 2023 @ 13:05:08.275 - idt
 
 <div align="center">
 
@@ -84,7 +87,11 @@ The details below guide you on sourcing the needed information:
 
 ## 🐞 Debugging & Troubleshooting
 
-[Existing debugging and troubleshooting details.]
+- **Data Mismatches**: If the fetched data looks off, inspect the raw API responses. The `data_processor.py` script interprets the data in specific ways and can be modified.
+
+- **UI Issues**: If the interface doesn't render correctly, ensure that all static assets are being served properly. The confidured pattrens can be modified in the `form.html` and the `data_processor.py` files. 
+
+- **Connectivity Issues**: If you can't fetch data, ensure that the Docker container can reach Logz.io. Check network permissions and configurations.
 
 ---
 
@@ -92,6 +99,3 @@ The details below guide you on sourcing the needed information:
 
 Found something amiss? Have an enhancement in mind? We're all ears. Be a part of our growing community and help us make this tool even better!
 
----
-
-These refinements aim to streamline content, improve clarity, and enhance the overall readability of the document. Adjust as needed based on your preferences!
