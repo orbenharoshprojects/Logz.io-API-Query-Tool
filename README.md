@@ -73,6 +73,8 @@ The details below guide you on sourcing the needed information:
 - **Region - Endpoint**: The Can be found in Logz.io under the "Settings" page. 
 
 - **Time Frame And OpenSearch TZ**: The "start" and "end" time frame for the used query. Can be taken directly via Logz.io OpenSearch UI with the addition of the OpenSearch UI timezone.
+> Ex. with IDT: Oct 23, 2023 @ 13:05:08.275 - Oct 24, 2023 @ 13:05:08.275 - idt
+=======
 
 <div align="center">
 
@@ -97,5 +99,4 @@ The details below guide you on sourcing the needed information:
 ## 🤲 Contribute
 
 Found something amiss? Have an enhancement in mind? We're all ears. Be a part of our growing community and help us make this tool even better!
-
 
