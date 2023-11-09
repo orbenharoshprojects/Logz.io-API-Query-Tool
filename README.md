@@ -71,7 +71,7 @@ The details below guide you on sourcing the needed information:
 - **Lucene Query**: A valid format witout the usage of wiilecards. 
 
 - **Region - Endpoint**: The Can be found in Logz.io under the "Settings" page. 
-> Ex. if your account has "us-east-1" under the "Setting" page, your used region is "US East". For more info, click [here](http://localhost:8000](https://docs.logz.io/user-guide/accounts/account-region.html). 
+> Ex. if your account has "us-east-1" under the "Setting" page, your used region is "US East". For more info, click [here](https://docs.logz.io/user-guide/accounts/account-region.html). 
 
 - **Time Frame And OpenSearch TZ**: The "start" and "end" time frame for the used query. Can be taken directly via Logz.io OpenSearch UI with the addition of the OpenSearch UI timezone.
 > Ex. with IDT: Oct 23, 2023 @ 13:05:08.275 - Oct 24, 2023 @ 13:05:08.275 - idt
