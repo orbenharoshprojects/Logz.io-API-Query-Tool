@@ -74,7 +74,7 @@ The details below guide you on sourcing the needed information:
 > Ex. if your account has "us-east-1" under the "Setting" page, your used region is "US East". For more info, click [here](https://docs.logz.io/user-guide/accounts/account-region.html). 
 
 - **Time Frame And OpenSearch TZ**: The "start" and "end" time frame for the used query. Can be taken directly via Logz.io OpenSearch UI with the addition of the OpenSearch UI timezone.
-> Ex. with IDT: Oct 23, 2023 @ 13:05:08.275 - Oct 24, 2023 @ 13:05:08.275 - idt
+> Ex. with IDT: Oct 23, 2023 @ 13:05:08.275 - Oct 24, 2023 @ 13:05:08.275 - idt. Supproted tz are listed in the 'data_processor.py' file [here](https://github.com/orbenharoshprojects/Logz.io-API-Query-Tool/blob/main/data_processor.py)
 
 <div align="center">
 
