@@ -17,7 +17,7 @@ Dive into our Flask interface, purposefully built to simplify your querying and 
 - **Web-Based Queries**: Seamlessly input your Logz.io queries and fetch log data through an intuitive web interface.
   
 - **Data Export**: Export data in your choice of CSV or TXT formats.
-
+> **🚨 NOTE**: For a large data export (above 2M results), split the needed time range to multiple export actions to ensure that all of the data is collected properly. 
 ---
 
 ## 🔧 Data Expectations & Limitations
